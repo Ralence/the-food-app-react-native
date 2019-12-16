@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 
-const MealItem = ({ item }) => {
+const MealItem = ({ item, onSelect }) => {
     return (
-        <TouchableOpacity onPress={() => { }}>
+        <TouchableOpacity onPress={onSelect}>
             <View style={styles.mealItem}>
                 <View style={{ ...styles.mealHeader, ...styles.row }}>
                     <ImageBackground source={{ uri: item.imageUrl }} style={styles.image}>
@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     mealItem: {
         flex: 1,
         height: 200,
-
         margin: 5,
         backgroundColor: '#f5f5f5',
         borderRadius: 10,
