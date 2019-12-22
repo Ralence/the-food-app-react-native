@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import { createAppContainer } from 'react-navigation';
@@ -20,6 +20,12 @@ const defaultNavigationOptions = {
     defaultNavigationOptions: {
         headerStyle: {
             backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+        },
+        headerTitleStyle: {
+            fontFamily: 'open-sans-bold'
+        },
+        headerBackTitleStyle: {
+            fontFamily: 'open-sans-bold'
         },
         headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
     }
@@ -63,7 +69,8 @@ const TabScreensConfig = {
                 return <Ionicons name='ios-restaurant' size={24} color={tabInformation.tintColor} />
             },
             tabBarColor: Colors.primaryColor,
-            activeColor: 'white'
+            activeColor: 'white',
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'open-sans-bold' }}>Meals</Text> : 'Meals'
         }
     },
     Favorites: {
@@ -73,7 +80,8 @@ const TabScreensConfig = {
                 return <Ionicons name='ios-star' size={24} color={tabInformation.tintColor} />
             },
             tabBarColor: Colors.accentColor,
-            activeColor: 'white'
+            activeColor: 'white',
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{ fontFamily: 'open-sans-bold' }}>Favorites</Text> : 'Favorites'
         }
     }
 
@@ -91,6 +99,9 @@ const MealsTabNavigator =
             TabScreensConfig,
             {
                 tabBarOptions: {
+                    labelStyle: {
+                        fontFamily: 'open-sans-bold'
+                    },
                     activeTintColor: Colors.accentColor
                 }
             });
