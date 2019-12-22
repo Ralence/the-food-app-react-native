@@ -16,6 +16,15 @@ import FiltersScreen from '../screens/FiltersScreen';
 
 import Colors from '../constants/colors';
 
+const defaultNavigationOptions = {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
+        },
+        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
+    }
+}
+
 const MealsNavigator = createStackNavigator({
     Categories: {
         screen: CategoriesScreen
@@ -26,14 +35,9 @@ const MealsNavigator = createStackNavigator({
     MealDetail: {
         screen: MealDetailScreen
     }
-}, {
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
-        },
-        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
-    }
-});
+},
+    defaultNavigationOptions
+);
 
 const FavoritesStackNavigator = createStackNavigator({
     Favorites: {
@@ -95,21 +99,27 @@ const FiltersStackNavigator = createStackNavigator({
     Filters: {
         screen: FiltersScreen
     }
-}, {
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : ''
-        },
-        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor
-    }
-});
+},
+    defaultNavigationOptions
+);
 
 const MainNavigator = createDrawerNavigator({
     MealsFavorites: {
-        screen: MealsTabNavigator
+        screen: MealsTabNavigator,
+        navigationOptions: {
+            drawerLabel: 'Meals'
+        }
     },
     Filters: {
         screen: FiltersStackNavigator
+    }
+}, {
+    contentOptions: {
+        activeTintColor: Colors.accentColor,
+        labelStyle: {
+            fontFamily: 'open-sans-bold',
+            fontSize: 22
+        }
     }
 });
 
