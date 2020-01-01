@@ -15,7 +15,6 @@ const mealReducer = (state = initialState, action) => {
             if (isFavorite >= 0) {
                 favMeals = favMeals.filter(meal => meal.id !== action.mealID);
             } else {
-                console.log(state.meals.find(meal => meal.id === action.mealID))
                 favMeals = [...favMeals, state.meals.find(meal => meal.id === action.mealID)];
             }
             return {
