@@ -1,4 +1,5 @@
 import { MEALS } from '../../data/dummy-data';
+import { TOGGLE_FAVORITE } from '../actions/meals';
 
 const initialState = {
     meals: MEALS,
@@ -7,7 +8,23 @@ const initialState = {
 }
 
 const mealReducer = (state = initialState, action) => {
-    return state;
+    switch (action.type) {
+        case TOGGLE_FAVORITE:
+            const isFavorite = state.favorite.findIndex(meal => meal.id === action.mealID);
+            let favMeals = [...state.favorite];
+            if (isFavorite >= 0) {
+                favMeals = favMeals.filter(meal => meal.id !== action.mealID);
+            } else {
+                console.log(state.meals.find(meal => meal.id === action.mealID))
+                favMeals = [...favMeals, state.meals.find(meal => meal.id === action.mealID)];
+            }
+            return {
+                ...state,
+                favorite: [...favMeals]
+            }
+        default:
+            return state;
+    }
 }
 
 export default mealReducer;
